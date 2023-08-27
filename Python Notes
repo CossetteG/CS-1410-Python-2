@@ -1,5 +1,44 @@
 ok python notes will go here
 
-this part was edited in Vis
+Review: 
 
-test number 2
+string: "word" or 'words' or """lots
+of words"""
+file: with open("filename.py", "r,w,a"):
+    do stuff with the file: readline, writeline, for loop
+
+list: ["ordered", "mutable",]
+tuples: ("immutable", "ordered")
+sets: {"unordered", "mutable", "does not allow duplicates}
+dict: {"key": "value", "very": "fun", "ordered": "and mutable"}
+
+split: takes every word in a string and turns it into a list of words
+s.split() or s.split('-')
+
+_ = use the previous variable that we been using 
+
+join: joins a split string into one string again
+'-'.join(_)
+
+strip: removes outside whitespace 
+_.strip()
+
+help: get help with a certain definition
+help(_)
+
+find: searches for substrings, returns -1 if not there
+_.find("-")
+
+substring: a piece inside a string, character by character
+
+
+
+
+
+
+
+
+
+
+
+
