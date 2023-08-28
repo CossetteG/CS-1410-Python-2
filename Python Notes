@@ -3,7 +3,14 @@ ok python notes will go here
 Review: 
 
 string: "word" or 'words' or """lots
-of words"""
+    of words"""
+int: whole number
+float: real number
+bool: True or False
+
+
+
+
 file: with open("filename.py", "r,w,a"):
     do stuff with the file: readline, writeline, for loop
 
@@ -11,6 +18,13 @@ list: ["ordered", "mutable",]
 tuples: ("immutable", "ordered")
 sets: {"unordered", "mutable", "does not allow duplicates}
 dict: {"key": "value", "very": "fun", "ordered": "and mutable"}
+
+append: adds to the end of a list
+_.append("element")
+extend:
+insert:
+pop:
+
 
 split: takes every word in a string and turns it into a list of words
 s.split() or s.split('-')
@@ -31,13 +45,55 @@ _.find("-")
 
 substring: a piece inside a string, character by character
 
+slice: taking a piece of a string or list
+_[start:stop]
+start is inclusive, stop is not
+strides: skipping every other how many
+_[start:stop:step]
+if step is negative, it will start from the end and go backwards
+_[len(s)-1] the last character, aka _[-1]
+
+open(<filename>,<mode>)
+f = open("my_file.txt", 'w')
+f.close() always close your file when you're done with it
+    'w' is for write, will create a new file or overwrite an existing file
+        f.write("text\n moretext")
+        print("text\n moretext", file=f)
+        \n is for newline within a string
+    'r' is for read, can only read existing files
+        f.read() reads the whole file in one string
+        f.readline() reads one line
+        f.readlines() reads a list of lines or all the lines in a with
+        with a loop: 1 line per iteration.
+with: automatically closes at end of block 
+with open("my_file.txt", "w")
+
+loops: iterate over iteratable things
+for loop- a set number of iterations
+for line in f:
+    print(line, end='')
+while loop- will go until false
+while True:
+    line = f.readline()
+    if line == '':
+        break
+    print(line, end='')
 
 
+zip: combines lists into a list of tuples
+list(zip(list_1), list_2))
+if you zip by itself it gives you zip obj at whatever location, you have to typecast into a list
 
+typecasting: making one variable into another type of variable, must be compatible
+a= "1"
+int(a)
 
-
-
-
+print: prints (obv)
+    file=   writes to a specific file
+    sep=    uses this as a separator
+    end=    use this instead of newline
+f-strings: formmatting outputs
+print(f"this is the context for {x} variable")
 
 
 
