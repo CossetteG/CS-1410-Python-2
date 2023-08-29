@@ -17,13 +17,54 @@ file: with open("filename.py", "r,w,a"):
 list: ["ordered", "mutable",]
 tuples: ("immutable", "ordered")
 sets: {"unordered", "mutable", "does not allow duplicates}
-dict: {"key": "value", "very": "fun", "ordered": "and mutable"}
+dict: {"key": "value", "very": "fun", "unordered": "and mutable"} 
+    aka lookup table,  hashtable, map
 
 append: adds to the end of a list
 _.append("element")
-extend:
-insert:
-pop:
+extend: adds a list to the end of another list
+_.extend(other list) or you can add with +
+insert: inserts and element in a specific place in a list
+_.insert(index, element)
+pop: _.pop() or _.pop(index) returns the value that is removed from the list
+in: checks if something is in a list, returns true or false
+for n in (): ..... if n in (): 
+index: returns an elements position or an error if not found
+_.index(n) 
+sort: will rearrange a list to be in alphabetical order, must be one data type
+_.sort() .... returns a new list
+sorted(): kinda the same as sort but better for creating new lists
+sorted(_, key=_) 
+
+^most are illegal for immutables: tuples, sets, dict
+finding things in a dict: find by key only 
+dict_name["key"]
+get: finding things but with a default value in case it isnt there 
+dict_name.get(key, default_value)
+pop: for dict- input is the key, return is the value, and it will be deleted
+pop(key, default=) default is optional in case its not there
+to print all the values: for key in dict_name: print key, grades[key]
+return key-value pairs: list(dict_name.items())
+return keys: list(dict_name.keys())
+return values: list(dict_name.values())
+len: finds the length of an iterable, starts the count at 1
+len(iterable)
+clear: removes all the keys in a dict idk
+
+Sets are like dicts but keys and values are 1 and allows set operations and no duplicates
+Union: |, intersection &, and difference -- 
+x,y = {'a','b','c'}, {'c','d','e’}
+print(x | y)
+{'d', 'e', 'b', 'c', 'a’}
+print(x & y)
+{'c’}
+print(x – y)
+{'a', 'b’}
+print(y – x)
+{'e', 'd’}
+x |= {'f',’g’}
+print(x)
+{'f', 'g', 'b', 'c', 'a'}
 
 
 split: takes every word in a string and turns it into a list of words
@@ -95,6 +136,48 @@ print: prints (obv)
 f-strings: formmatting outputs
 print(f"this is the context for {x} variable")
 
+a += b (edits the same list) can be different than a = a + b (creates a new list)
+concatenation
 
+operator.itemgetter: creates a key function for you. idk look it up 
+I think it goes back to sorting
+composite key: sorts by returning a tuple 
+operator.itemgetter(1,0)
+
+None: what to return if your function gets a dead end
+called a destructive mutator
+Bool False: equivalent to 0, "", [], and None
+Bool True: equivalent to 1, "_", [_], and not None
+and: checks for a false 
+or: checks for a true
+!=: not equal to
+==: is equal to 
+aliasing: two identifiers pointing to the same object
+first = _,  second = first
+copy: will have a new variable with same info in a different location
+third = first.copy()
+is: tests for the same object 
+not: uno reverse card, aka ! (is not tests for different object)
+
+comprehension: generating an iterable from another iterable
+[expression for variable in expression2 if condition]
+i.e. [sq for sq in sqares if sq %2==0]
+confusing but more consise 
+i.e. [(x,y) for x in set1 for y in set2 if x!=b if y<3] 
+dict comprehension: creating dictionaries- constructs pairs
+{expression><input sequence><optional condition}
+i.e. {x:y for x,y in zip(keys,values)} or dict(zip(keys,values))
+
+lazy iterators (generator expressions) data is generated when called, not defined,
+ ^can iterate through them or call with next (range(_) is a generator)
+next: will give you the next generated object from a generator
+g = (2*n for n in range(1,11))
+print(g)
+<generator object <genexpr> at 0x103ea2050>
+print(next(g))
+2
+
+
+----------
 
 
