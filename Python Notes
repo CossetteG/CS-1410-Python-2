@@ -32,7 +32,7 @@ for n in (): ..... if n in ():
 index: returns an elements position or an error if not found
 _.index(n) 
 sort: will rearrange a list to be in alphabetical order, must be one data type
-_.sort() .... returns a new list
+_.sort() will return None and then sort the original list
 sorted(): kinda the same as sort but better for creating new lists
 sorted(_, key=_) 
 
@@ -50,6 +50,8 @@ return values: list(dict_name.values())
 len: finds the length of an iterable, starts the count at 1
 len(iterable)
 clear: removes all the keys in a dict idk
+adding to a dict with a loop: dict_name[key] = value
+    dict_name.get(key, default value) + 1 #counts how many of that key is in the original list
 
 Sets are like dicts but keys and values are 1 and allows set operations and no duplicates
 Union: |, intersection &, and difference -- 
@@ -177,6 +179,16 @@ print(g)
 print(next(g))
 2
 
+open and similar calls don't do things themselves, they call upon operating system language
+high-level language(python) is more user-friendly, low-level language is more machine friendly
+
+ASCII - characters in a string (just a shape)
+{x*1.06:.2f} .2f is 2 decimal places, 2 floating points
+del deletes things
+del _ 
+
+size tells you how big a file is
+width, height = image.size 
 
 ----------
 
