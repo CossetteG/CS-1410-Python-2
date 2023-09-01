@@ -192,4 +192,9 @@ width, height = image.size
 
 ----------
 
+commands:
+ls :shows us all the files in the current folder
+pwd :shows us the full path 
+. .. :one step up in file folders
+
 
