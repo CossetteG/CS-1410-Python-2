@@ -1,1 +1,1 @@
-pip 
+C:\> where pip3

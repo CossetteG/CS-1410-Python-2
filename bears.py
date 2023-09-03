@@ -1,7 +1,12 @@
 #requires Pillow
 #reqires starting image
 
+
+
+'''
 from PIL import Image
+
+
 
 filename = 'starr_bears.jpg'
 filepath = f"./{filename}"
@@ -22,14 +27,14 @@ print(f"Mode: {mode}")
 # Load all pixels from the image.
 orig_pixel_map = orig_image.load()
 
-'''
-# Examine all pixels in the image.
-print("\nPixel data:")
-for x in range(10):
-    for y in range(10):
-        pixel = orig_pixel_map[x, y]
-        print(pixel)
-'''
+# 
+# # Examine all pixels in the image.
+# print("\nPixel data:")
+# for x in range(10):
+#     for y in range(10):
+#         pixel = orig_pixel_map[x, y]
+#         print(pixel)
+# 
 
 # Create a new image matching the original image's color mode, and size.
 #   Load all the pixels from this new image as well.
@@ -42,10 +47,13 @@ for x in range(width):
     for y in range(height):
         #print(orig_pixel_map[x,y])
         
-        for rgb in orig_pixel_map[x,y]:
-            rgb = 255 - rgb 
+        r, g, b = orig_pixel_map[x,y]
+        new_r = 255 - r
+        new_g = 255 - g
+        new_b = 255 - b
 
         # Copy the original pixel to the new pixel map.
-        new_pixel_map[x, y] = rgb 
+        new_pixel_map[x, y] = (r,g,b) 
 
 new_image.save(file_out_path)
+'''
