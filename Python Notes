@@ -191,11 +191,64 @@ del _
 size tells you how big a file is
 width, height = image.size 
 
-----------
 
 commands:
 ls :shows us all the files in the current folder
 pwd :shows us the full path 
 . .. :one step up in file folders
 
+----------
+
+Classes and Objects
+all object- oriented systems use class 
+
+ADT - Abstract Data Type 
+    stack (fuse) data types to create new data types 
+
+s = "I am a string"
+print(type(s))
+<class str> string is the class, the variable is the object
+
+something you do to the variable is called a method 
+s.__add__("!") 
+    the double _ (dender) is a convention for simple methods (not required)
+    add is a built- in method to the string class, adds to the string
+s.__sizeof__() - tells you how much memory that obj uses
+s.startswith("I") - tells you t/f if it starts with that string 
+print(dir(str)) will give you all the methods available for the string class
+
+Class: a collection of data and actions that can modify the data. Classes
+    make data less abstract and they act as a blueprint for individual objects 
+    ie the instructions to make a tree or an animal, if building a forest
+Object: are constructed according to the blueprint that is the class.
+    the specific object that takes up space and is an instance of a class. 
+Instance: Another way to refer to a specific object
+Instantiation: creating an instance of an object 
+
+creating a class:
+class Student:
+    pass 
+
+best_student = Student()
+best_student.first_name = "Cossette"
+best_student.last_name = "Gomez"
+
+adding methods to classes:
+    __init__ is the built in function to construct classes (the constructors)
+class Actor:
+    """Define"""
+    def __init__(self):
+        self.first_name = "Helen"
+        self.last_name = "Mirren"
+
+helen = Actor() - the parentheses automatically call the dender init __init__ 
+print(f"{helen.first_name} is an actress")
+
+or you can add attributes as parameters that you pass through the class 
+
+    def __init__(self, firstname, lastname, etc)
+        self.first_name = firstname 
+        self.last_name = lastname 
+
+helen = Actor("Helen", "Mirren")
 
