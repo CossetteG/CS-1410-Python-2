@@ -108,6 +108,7 @@ f.close() always close your file when you're done with it
         f.readline() reads one line
         f.readlines() reads a list of lines or all the lines in a with
         with a loop: 1 line per iteration.
+    'a' is for append, will add onto an existing file 
 with: automatically closes at end of block 
 with open("my_file.txt", "w")
 
