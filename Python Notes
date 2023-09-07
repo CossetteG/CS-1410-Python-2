@@ -216,6 +216,7 @@ s.__add__("!")
 s.__sizeof__() - tells you how much memory that obj uses
 s.startswith("I") - tells you t/f if it starts with that string 
 print(dir(str)) will give you all the methods available for the string class
+will also give you stuff for copy and such that are imported
 
 Class: a collection of data and actions that can modify the data. Classes
     make data less abstract and they act as a blueprint for individual objects 
@@ -275,6 +276,25 @@ class Actor:
     union = "Screen Actors Guild"
     def __init__
 
+you can also change a class attribute after the fact, but that will change it for all instances of the class
+    class Student:
+    """lol """
+    boob = "yes"
+    def __init__(self, grade="A"):
+        self.grade_ = grade
+    noob = "no"
+
+    best_student = Student()
+    best_student.first_name = "Cossette"
+    best_student.last_name = "Gomez"
+
+    Student.noob = "maybe"
+
+    ok_student = Student()
+
+    print(best_student.first_name, best_student.noob)
+    print(ok_student.noob)
+
 
 Shallow vs Deep copies
 
@@ -291,5 +311,27 @@ a deep copy creates a new instance with the same attributes as the first
     b = copy.deepcopy(a)
     
 
+Changing Objects with Method 
 
+create a method by adding a function after the __init__ function within the method
+then call the method by using instance_name.method_name()
+    class Player:
+        """Simple player class"""
+        def __init__(self, health=100, score=0, level=1):
+            self.health = health
+            self.score = score
+            self.level = level
+            self.powerups = []
+        
+        def print_player(self):
+            if self.health <=0:
+                print("dead lol")
+            else:
+                print(self.health)
+
+        def add_powerup(self, pu):
+            self.powerups.append(pu)
+
+    mario = Player() #the __init__ is called magically 
+    mario.print_player()
 
