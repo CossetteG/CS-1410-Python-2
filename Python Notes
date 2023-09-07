@@ -252,3 +252,44 @@ or you can add attributes as parameters that you pass through the class
 
 helen = Actor("Helen", "Mirren")
 
+you can add default parameters to classes as well, 
+however default parameters must always come after all the required parameters
+
+the def __init__ must always have self as the first parameter 
+
+
+class attributes are defined above the init for object attributes. 
+theyre delcared like normal variables but manifest as an attribute the same for every variable 
+they can be altered for an individual object by doing 
+    instance.class_attribute = "whatever"
+
+for an unchangable attribute- class attribute
+for an optionally changeable attribute- optional parameter in init__ 
+for a unique to every object attribute- normal parameter in init__ 
+
+forget what you put in a class? no worries just use 
+    print(help(<class_name>)) 
+
+class Actor:
+    """Define the actor class"""
+    union = "Screen Actors Guild"
+    def __init__
+
+
+Shallow vs Deep copies
+
+a shallow copy gives another name to the same variable 
+    a = Actor()
+    a.name = "billy joe"
+    b = a 
+
+a deep copy creates a new instance with the same attributes as the first 
+    import copy 
+
+    a = Actor()
+    a.name = "billy joe"
+    b = copy.deepcopy(a)
+    
+
+
+
