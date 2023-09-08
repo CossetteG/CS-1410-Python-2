@@ -44,6 +44,11 @@ class Player:
             print("you are weak sauce")
         print(self.powerups) 
 
+def increase_level(player):
+    player.level += 1
+    print(f"You are at level {player.level}")
+
+
 mario = Player() #the __init__ is called magically 
 mario.print_player()
 
@@ -53,3 +58,5 @@ print(mario.powerups)
 
 peach = Player("fire flower")
 peach.print_powerups() 
+
+increase_level(peach) 

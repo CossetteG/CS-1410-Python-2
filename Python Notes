@@ -313,7 +313,8 @@ a deep copy creates a new instance with the same attributes as the first
 
 Changing Objects with Method 
 
-create a method by adding a function after the __init__ function within the method
+Instance Methods
+create a instance method by adding a function after the __init__ function within the method
 then call the method by using instance_name.method_name()
     class Player:
         """Simple player class"""
@@ -335,3 +336,29 @@ then call the method by using instance_name.method_name()
     mario = Player() #the __init__ is called magically 
     mario.print_player()
 
+both functions and methods can change something about an instance of a class 
+Instance Methods always have self as the first parameter, whereas in functions the object is passes as a parameter
+    def increase_level(player):
+        player.level += 1
+        print(f"You are at level {player.level}")
+
+    increase_level(peach) 
+
+Class Methods and Static Methods
+
+class methods change something about the entire class, including every instance of the class
+they are notated with the @classmethod decorator and take cls as the first parameter, 
+then place in the same block as instance parameters 
+    @classmethod
+    def change_salary_cap(cls, new_cap):
+        cls.salary_cap = new_cap
+    
+    NFLteam.change_salary_cap(199000000)
+
+or you could do this but its not as good 
+    class Student:
+        """lol """
+        boob = "yes"
+        noob = "no"
+    
+    Student.noob = "maybe"
