@@ -1,62 +1,94 @@
-'''
-class Student:
-    """lol """
-    boob = "yes"
-    def __init__(self, grade="A"):
-        self.grade_ = grade
-    noob = "no"
+class Subway():
+  fare = 2.4
+  def __init__(self):
+    self.stops = ["Alewife", "Davis", "Porter", "Harvard", "Central", "Kendall"]
+    self.current_stop= "Alewife"
+    self.direction = "south"
+    self.passengers = 0
+    self.total_fares = 0
 
-best_student = Student()
-best_student.first_name = "Cossette"
-best_student.last_name = "Gomez"
+  def board(self, pasng):
+    self.passengers += pasng
 
-Student.noob = "maybe"
+  def disembark(self, pasng):
+    if pasng > self.passengers:
+      pass
+      # print("There aren't enough passengers to disembark that many")
+    else:
+      self.passengers -= pasng
 
-ok_student = Student()
+  def advance(self):
+    """ advances the subway and switches its direction"""
+    curr_index = self.stops.index(self.current_stop)
 
-print(best_student.first_name, best_student.noob)
-print(ok_student.noob)
-'''
-'''
-Cossette Gomez
-<__main__.Student object at 0x00000138CE007D60>
-'''
+    if curr_index == len(self.stops)-1:
+      self.stops.reverse()
+      if self.direction == "south":
+        self.direction = "north"
+      else:
+        self.direction ="south"
+    else:
+      pass
 
-class Player:
-    """Simple player class"""
-    def __init__(self, pw="mushroom", health=100, score=0, level=1):
-        self.health = health
-        self.score = score
-        self.level = level
-        self.powerups = [pw]
-        
-    def print_player(self):
-        if self.health <=0:
-            print("dead lol")
-        else:
-           print(self.health)
+    curr_index = self.stops.index(self.current_stop)
+    new_index = curr_index + 1
+    self.current_stop = self.stops[new_index]
+    
 
-    def add_powerup(self, pu):
-        self.powerups.append(pu)
+  def distance(self, des_stop):
+    """ calculates how many stops from the current stop to the desired stop"""
+    if des_stop in self.stops:
 
-    def print_powerups(self):
-        if len(self.powerups) ==0:
-            print("you are weak sauce")
-        print(self.powerups) 
+      hypth_stops = self.stops.copy()
+      if self.direction == "north":
+        hypth_stops.reverse()
+      curr_stop = self.current_stop
 
-def increase_level(player):
-    player.level += 1
-    print(f"You are at level {player.level}")
+      if hypth_stops.index(des_stop) == hypth_stops.index(curr_stop):
+        #you are at your desired stop
+        return 0 
+      elif hypth_stops.index(des_stop) > hypth_stops.index(curr_stop):
+        #your desired stop is ahead of you
+        return hypth_stops.index(des_stop) - hypth_stops.index(curr_stop)
+      elif hypth_stops.index(des_stop) < hypth_stops.index(curr_stop):
+        #your desired stop is behind you 
+        return (len(hypth_stops)-1-hypth_stops.index(curr_stop))*2 + (hypth_stops.index(curr_stop) - hypth_stops.index(des_stop))
+    else:
+      pass
+      # print("That is not a stop on this subway")
+  @classmethod
+  def change_fare(cls, new_fare):
+    """updates the subway fare"""
+    cls.fare = new_fare
 
+  def calculate_fares(self):
+    """calculates the fares for all passengers currently on board and adds it to the total fares"""
+    self.total_fares += self.passengers*self.fare 
+    
 
-mario = Player() #the __init__ is called magically 
-mario.print_player()
+sooubway = Subway()
 
-mario.add_powerup("mushroom")
-mario.add_powerup("star")
-print(mario.powerups)
+sooubway.passengers = 220
+sooubway.board(45)
+print(sooubway.passengers)
 
-peach = Player("fire flower")
-peach.print_powerups() 
+sooubway.passengers = 100
+sooubway.calculate_fares()
+print(sooubway.total_fares)
 
-increase_level(peach) 
+sooubway.passengers = 80
+sooubway.disembark(90) 
+print(sooubway.passengers)
+
+print(sooubway.current_stop, sooubway.direction)
+sooubway.advance()
+print(sooubway.current_stop, sooubway.direction)
+
+sooubway.current_stop = "Davis"
+sooubway.direction = "north"
+print(sooubway.current_stop, sooubway.direction)
+print(sooubway.distance("Porter"))
+
+sooubway.change_fare(2.75)
+print(sooubway.fare)
+

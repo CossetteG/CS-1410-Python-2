@@ -35,6 +35,8 @@ sort: will rearrange a list to be in alphabetical order, must be one data type
 _.sort() will return None and then sort the original list
 sorted(): kinda the same as sort but better for creating new lists
 sorted(_, key=_) 
+remove: removes the first instance of it from a list 
+_.remove("element")
 
 ^most are illegal for immutables: tuples, sets, dict
 finding things in a dict: find by key only 
@@ -362,3 +364,47 @@ or you could do this but its not as good
         noob = "no"
     
     Student.noob = "maybe"
+
+Alternate constructors: 
+Factory Method:
+having a method within the class that creates an instance with a common set of parameters
+    @classmethod
+    def method_name(cls):
+        """"""
+        return Class_name("the parameters you want)
+    
+    object = Class_name.method_name() 
+
+Static Method:
+creating a function that is specific to that class,
+usually you can put an instance of itself in as a parameter, but has no required parameters
+    @staticmethod
+    def method_name(obj1, obj2):
+        """"""
+        return obj1.attribute += obj2.attribute
+    
+    x = Class_name.method_name(obj1, obj2) 
+    y = obj1.method_name(obj1, obj2) 
+both class and static methods can be called from either a class or an instance of a class, with the same result 
+
+Functions:
+not methods 
+classes are mutable so you can pass stuff through parameters and do all kinds of stuff
+    def print_player(p):
+    """Print the status of a player"""
+        if p.health <= 0:
+            print(f"whatever")
+        else:
+            print(f"whatever.")
+
+    print_player(player1)
+
+
+basically
+instance methods do stuff to an instance (singular)
+class methods do stuff to the whole class
+factory methods make instances 
+static methods do something with an instance (plural)
+functions can do all of the above, but outside the class declaration 
+
+
