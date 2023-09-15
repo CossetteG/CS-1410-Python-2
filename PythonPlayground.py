@@ -1,37 +1,68 @@
 
-class Player:
-    """player class"""
-    def __init__(self, health=100):
-        self.health = health
+class Person:
+    def __init__(self, name, age, occupation):
+        self.name = name
+        self.age = age
+        self.occupation = occupation 
+    
+    def say_hello(self):
+        print(f"Hello, my name is {self.name}")
 
-    def print_player(self, p):
-        '''prints the satus of the player'''
-        print(f"This player has {p.health} health.")
+class Superhero(Person):
+    def __init__(self, name, age, occupation, superpower):
+        super().__init__(name, age, occupation)
+        self.superpower = superpower
 
-player1 = Player()
-#Player().print_player(player1)
+    #this constructor and method is overriding the previous /method
+    def say_hello(self):
+        super().say_hello()
+        print("I AM HERE")
+
+    #this method is extending the class
+    def fight(self):
+        print("AHHHHHHHHHHHHHHHHHHH")
+
+    def old_say_hello(self):
+        super().say_hello()
+
+hero = Superhero("Jessica Jones", 29, "private investigator", "stronk")
+print(hero.name)
+print(hero.superpower)
+
+#print(help(Superhero))
+
+#object is god 
+
+'''
+
+'''
+class ClassA:
+    pass
+class ClassB(ClassA):
+    pass 
+
+objecta = ClassA()
+objectb = ClassB()
+
+print(isinstance(objecta, ClassA))#True
+print(isinstance(objectb, ClassA))#True 
+print(isinstance(objecta, ClassB))#False 
+
+print(issubclass(ClassB, ClassA))#True
+print(issubclass(ClassA, ClassB))#False
 
 """
-    def print_player(self):
-        '''prints the satus of the player'''
-        print(f"This player has {self.health} health.")
-
-player1.print_player() 
 """
 
-class NFLteam:
-    salary_cap = 198200000
-    def __init__(self, city, name):
-        self.city = city
-        self.name = name 
+class Dinosoar:
+    def __init__(self, size, weight):
+        self.size = size 
+        self.weight = weight
 
-    @classmethod
-    def change_salary_cap(cls, new_cap):
-        cls.salary_cap = new_cap
+class Carnivore:
+    def __init__(self, diet):
+        self.diet = diet 
 
-# NFLteam.change_salary_cap(2)
-team1 = NFLteam("Yokohama", "PortMafia")
-NFLteam.change_salary_cap(2)
-print(team1.salary_cap)
+class Tyrannosaurus(Dinosoar, Carnivore):
+    pass
 
-team1.change_salary_cap(2)
