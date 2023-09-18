@@ -302,7 +302,10 @@ Cells
     active transport - moving a solute against its natural inclinations 
         reverse osmosis- moving up/against their concentration gradient
         requires energy/atp 
-    
+-hypertonic- more solution - shriveled- plasmolyzed
+-isotonic- equal solution- normal- flaccid
+-hypotonic- less solution- lysed- turgid 
+
 Metabolism, Photosynthesis, and Cellular Respiration 
 -metabolism is the total cost of all energy required to do everything 
 -every reaction requires activation energy 
@@ -405,5 +408,38 @@ Cellular Division- Mitosis
         testicular
         colon 
 
-
-
+-Rosalind Franklin
+    X-ray Crystallography- a tequnique that can determine the stucture of small molecules ie proteins and dna 
+    piece of the puzzle to see how dna looks 
+-Watson and Crick
+    "we wish to suggest a structure for the salt of deoxyrybose...
+    discovered the double helix in dna
+-DNA Replication
+    done in S phase of Interphase 
+    bacteria and prokaryotes have 1 site of origin 
+    we have linear dna and have more than 1 site of origin 
+    we split the two halves of the parent strand of dna and uses each half as a template to create the new other half 
+        DNA helicase- splits the strands
+        DNA polymerase- reads the helix and creates its complementary strand -can also lead to mutations
+        ^some of them work downstream (easy) and some work upstream (hard and in segments)
+        A-T, C-G 
+-Protein Synthesis (phenotype production) 
+    organisms genotype, its characteristics are determined by its dna 
+    genotype > phenotype 
+    DNA > RNA > Polypeptides (proteins)
+    Trascription gets RNA from DNA 
+        RNA uses U (urisine) instead of T (thymine)
+        ^its a complementary copy of the DNA 
+        groups of 3 are called codons, and each one refers to 1 specific amino acid 
+        mRNA is messenger RNA, the protein that transcribes - RNA polymerase
+        each gene has a promoter DNA at the beginning and Terminator that is the meta data that tells mrna to start/stop a gene 
+        -the genetic code is a chart with what codons make what amino acids 
+            AUG is the Start- UAA, UAG, and UGA are Stop 
+            There are 20 total amino acids that make every protein in the body 
+        the eukaryotic cell processes the rna after transcription 
+        RNA processing 
+        -Intron- intragenic reagions- spacers between the genes 
+        -Exon- expressed region -the genes that have information 
+        -separates ^ and adds a cap and a tail 
+        -also splices different genes to make different proteins - a single gene can code for multiple proteins 
+    Translation gets protein from RNA 
