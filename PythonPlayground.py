@@ -54,15 +54,27 @@ print(issubclass(ClassA, ClassB))#False
 """
 """
 
-class Dinosoar:
-    def __init__(self, size, weight):
-        self.size = size 
-        self.weight = weight
-
+class Dinosaur:
+  def __init__(self, size, weight):
+    self.size = size
+    self.weight = weight
+    
 class Carnivore:
-    def __init__(self, diet):
-        self.diet = diet 
+  def __init__(self, diet):
+    self.diet = diet
+    
+class Tyrannosaurus(Dinosaur, Carnivore):
+  def __init__(self, size, weight, diet):
+    Dinosaur.__init__(self, size, weight)
+    Carnivore.__init__(self, diet)
+    
+tiny = Tyrannosaurus(12, 14, "whatever it wants")
+#super does not work with multiple inheritance 
+'''
+#the .mro() method returns the order of inheritance for an object 
+#it will always end in object bc object is god
+obj= C()
+obj.hello()
 
-class Tyrannosaurus(Dinosoar, Carnivore):
-    pass
-
+print(C.mro())
+'''
