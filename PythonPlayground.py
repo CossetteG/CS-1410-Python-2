@@ -1,64 +1,4 @@
-
-
-class Dinosaur:
-  def __init__(self, size, weight):
-    self.size = size
-    self.weight = weight
-    
-class Carnivore:
-  def __init__(self, diet):
-    self.diet = diet
-    
-#bottom to top, left to right 
-class Tyrannosaurus(Dinosaur, Carnivore):
-  def __init__(self, size, weight, diet):
-    Dinosaur.__init__(self, size, weight)
-    Carnivore.__init__(self, diet)
-    #pass the Tyrannosaurus self as a paramenter in the dinosaur and carnivore constructors 
-
-    
-tiny = Tyrannosaurus(12, 14, "whatever it wants")
-#print(tiny.diet)
-
-
-class A:
-  def hello(self):
-    print("Hello from A")
-
-class B:
-  def hello(self):
-    print("Hello from B")
-
-  def break_my_computer(self):
-    print("Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. The rats make me crazy")
-    B().break_my_computer()
-
-class C(A, B):
-  #overriding
-  def hello(self):
-    B().hello()
-    #you do need the parentheses after B
-    #overrides the hello() in A because A is the first inherited hello() function
-
-  #extending
-  def bonjour(self):
-    print("Bonjour")
-
-#multiple inheritance is debatable on whether on or not its a good design strategy
-#some languages support it and some don't
-obj = C()
-obj.hello()
-#super does not work with multiple inheritance because Python doesnt know what its referring to
-
-#cohesion refers to how related data is to eachother
-#classes increase cohesion
-#multiple inheritences lower cohesion
-
-#New Module: Encapsulation, Getters and Setters
-#methods and data are encapsulated in their class - can be described by venn diagrams
-#Python usually has no data restrictions - accessible from anywhere. Most languages don't allow this
-#public = no restrictions 
-#private = restricted 
+''' 
 class Phone:
     def __init__(self, model, megapixels, storage):
       self.model = model
@@ -68,22 +8,74 @@ class Phone:
       self.__storage = storage
       #the dender makes it look like a private thing, it's just invisible to the outside 
       #for any dender the compiler adds a class name to it
-
+    
     def helper(self):
       #use self.storage
 
-my_phone = Phone("iPhone", 12)
-print(my_phone.model)
-print(my_phone._megapixels) 
+    def get_megapixels(self):
+       return self._megapixels
+    
+    def set_megapixels(self, new_mega):
+       self._megapixels = new_mega
 
-# print(my_phone.__storage)
-#throws an error that says it doesn't exist. 
-      
-print(my_phone.__dict__)
-#^useful function to show all the stuff declared in a class 
+    # def __private_method(self):
+    #    return "I am a private method"
 
+my_phone = Phone("phone", 256, 12)
+print(my_phone._megapixels)
+print(my_phone.get_megapixels) 
+#we try to use gets and sets to change values to reduce unwanted side effects 
+'''
 
+class TestClass:
+    def __init__(self, num1, num2):
+        self._num1 = num1
+        self._num2 = num2
 
+    def get_num1(self):
+        return self._num1
 
+    def set_num1(self, new_num):
+        self._num1 = new_num
 
+    def get_num2(self):
+        return self._num2
 
+    def set_num2(self, new_num):
+        self._num2 = new_num 
+
+my_obj = TestClass(2, 3)
+
+class Person:
+    def __init__(self, name):
+        self._name = name
+
+    #getters
+    def name(self):
+        return self._name
+    
+    def get_name(self):
+        return self._name 
+    
+    name = property(get_name) 
+
+    @property
+    def name(self):
+        return self._name 
+    
+    @name.setter #decorator has the name of the function in it 
+    def name(self):
+        #data validation in set
+        if type(new_name) != str:
+            raise TypeError("Name must be a string")
+        self._name(self, new_name)
+        self._name = new_name
+
+    
+c = Person("BLYAT")
+#getters
+print(c._name) #calls the variable itself
+print(c.name()) #calls the instance method 
+print(c.name) #ZEN- calls the method with the property decorator
+#setter
+c.name = ("Fedya") #calls the setter, they can have the same name 
