@@ -20,7 +20,8 @@ class Phone:
 
     # def __private_method(self):
     #    return "I am a private method"
-
+    # name = property(get_name, set_name)
+    
 my_phone = Phone("phone", 256, 12)
 print(my_phone._megapixels)
 print(my_phone.get_megapixels) 
