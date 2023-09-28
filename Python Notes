@@ -505,3 +505,8 @@ for all languages, there are getters and setters
 using methods is not the "python way" lol 
 
 DATA VALIDATION
+-------
+
+polymorphism is when one call can call different things 
+ie + is an integer adder and a string concatenator 
+
