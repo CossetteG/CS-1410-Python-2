@@ -1,82 +1,108 @@
-''' 
-class Phone:
-    def __init__(self, model, megapixels, storage):
-      self.model = model
-      self._megapixels = megapixels
-      #the underscore is a conventional way to notate a private variable in Python
-      #it will not throw an error if you try to access it publicly tho
-      self.__storage = storage
-      #the dender makes it look like a private thing, it's just invisible to the outside 
-      #for any dender the compiler adds a class name to it
-    
-    def helper(self):
-      #use self.storage
-
-    def get_megapixels(self):
-       return self._megapixels
-    
-    def set_megapixels(self, new_mega):
-       self._megapixels = new_mega
-
-    # def __private_method(self):
-    #    return "I am a private method"
-    # name = property(get_name, set_name)
-    
-my_phone = Phone("phone", 256, 12)
-print(my_phone._megapixels)
-print(my_phone.get_megapixels) 
-#we try to use gets and sets to change values to reduce unwanted side effects 
-'''
-
+#polymorphism 
 class TestClass:
-    def __init__(self, num1, num2):
-        self._num1 = num1
-        self._num2 = num2
-
-    def get_num1(self):
-        return self._num1
-
-    def set_num1(self, new_num):
-        self._num1 = new_num
-
-    def get_num2(self):
-        return self._num2
-
-    def set_num2(self, new_num):
-        self._num2 = new_num 
-
-my_obj = TestClass(2, 3)
-
-class Person:
-    def __init__(self, name):
-        self._name = name
-
-    #getters
-    def name(self):
-        return self._name
+  def sum(self, a = None, b = None, c = None):
+    if a is not None and b is not None and c is not None:
+      return a + b + c
+    elif a is not None and b is not None:
+      return a + b
+    elif a is not None:
+      return a
+    else:
+      return 0
     
-    def get_name(self):
-        return self._name 
-    
-    name = property(get_name) 
+obj = TestClass()
+# print(obj.sum())
+# print(obj.sum(1))
+# print(obj.sum(1, 2))
+# print(obj.sum(1, 2, 3))
 
-    @property
-    def name(self):
-        return self._name 
-    
-    @name.setter #decorator has the name of the function in it 
-    def name(self):
-        #data validation in set
-        if type(new_name) != str:
-            raise TypeError("Name must be a string")
-        self._name(self, new_name)
-        self._name = new_name
+'''Polymorphism is when you can use the same call to do multiple things,
+ ie + that can add and concatenate. method overriding does this'''
 
+#method overloading- using the same method to do different things
+'''
+class TestClass:
+  def sum(self, a, b, c):
+    return a + b + c
+  
+  def sum(self, a, b):
+    return a + b
+  
+obj = TestClass()
+print(obj.sum(1, 2, 3))
+#returns an error message because python uses the last declared method
+'''
+class TestClass:
+  def sum(self, a, b, c=0):
+    return a + b + c
+
+obj = TestClass()
+# print(obj.sum(1,2)),
+# print(obj.sum(1, 2, 3))
+#works because c is optional
+#if I put c as None the first one throws an error but the second doesn't 
+
+'''overloading- this case uses an if else block to decide which thing to do 
+from the same method.'''
+#teacher example:
+class TestClass:
+  def sum(self, a = None, b = None, c = None):
+    if a is not None and b is not None and c is not None:
+      return a + b + c
+    elif a is not None and b is not None:
+      return a + b
+    elif a is not None:
+      return a
+    else:
+      return 0
     
-c = Person("BLYAT")
-#getters
-print(c._name) #calls the variable itself
-print(c.name()) #calls the instance method 
-print(c.name) #ZEN- calls the method with the property decorator
-#setter
-c.name = ("Fedya") #calls the setter, they can have the same name 
+obj = TestClass()
+print(obj.sum())
+print(obj.sum(1))
+print(obj.sum(1, 2))
+print(obj.sum(1, 2, 3))
+
+#operator overloading
+
+#duck typing 
+class Baseball:
+  def __init__(self, power):
+    self._power = power
+
+  def hit(self):
+    if self._power >= 10:
+      return "Home Run"
+    else:
+      return "weak"
+    
+
+class Song:
+  def __init__(self, title, author):
+    self._title = title
+    self._author = author
+
+  def hit(self):
+    if self._author == "Fall Out Boy":
+      return "YEAHHHHHHHH"
+    elif self._title == "Paradise":
+      return "Yeahhhhhh!"
+    else:
+      return "nahhhh"
+    
+def print_hit(obj):
+  try:
+    print(obj.hit())
+  except AttributeError as e:
+    print(e) 
+
+#crashing your code is the highest severity of bug that there is
+#it's better to print an error message than to crash the system
+
+#possible becuase both baseball and song are objects
+
+my_player = Baseball(12)
+my_song = Song("Paradise", "Rude A")
+
+print_hit(my_player)
+print_hit(my_song)
+
