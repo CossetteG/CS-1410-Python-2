@@ -510,3 +510,61 @@ DATA VALIDATION
 polymorphism is when one call can call different things 
 ie + is an integer adder and a string concatenator 
 
+Magic Operators that can be polymorphed:
+Operator	Method Name
++	object.__add__(self, other)
+-	object.__sub__(self, other)
+*	object.__mul__(self, other)
+/	object.__truediv__(self, other)
+//	object.__floordiv__(self, other)
+<	object.__lt__(self, other)
+<=	object.__le__(self, other)
+==	object.__eq__(self, other)
+!=	object.__ne__(self, other)
+>	object.__gt__(self, other)
+>=	object.__ge__(self, other)
+
+
+from abc import ABC, abstractmethod
+
+class Superclass(ABC):
+    @abstractmethod
+    def area(self): pass 
+
+    @abstractmethod
+    def perimeter(self): pass 
+
+#an abstract class / method cannot be instantiated, it is only for using to build subclasses
+class Subclass:
+    def __init__(self, side):
+        self.__side = side 
+
+shape = Shape() #will not work 
+sqaure = Subclass(4) #you can do this if you don't have any abstract methods
+
+class Median:
+  def average(self, num_1, num_2):
+    return (num_1 + num_2)/2
+
+  def calculate_median(self, num1, num2, num3=None, num4=None, num5=None): 
+    if type(num5) == int:
+      num_list = sorted([num1, num2, num3, num4, num5]) 
+      return num_list[2]
+    elif type(num4) == int:
+      num_list = sorted([num1, num2, num3, num4]) 
+      return self.average(num_list[1], num_list[2])
+    elif type(num3) == int:
+      num_list = sorted([num1, num2, num3]) 
+      return num_list[1]
+    elif type(num2) == int:
+      return self.average(num1, num2)
+    else:
+      return "To find the median, input 2-5 integers"
+
+
+m = Median()
+
+print(m.calculate_median(3, 5, 1, 4, 2))
+print(m.calculate_median(8, 6, 4, 2))	
+print(m.calculate_median(9, 3, 7))
+print(m.calculate_median(2, 5)) 
