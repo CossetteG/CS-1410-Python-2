@@ -1,108 +1,92 @@
-#polymorphism 
-class TestClass:
-  def sum(self, a = None, b = None, c = None):
-    if a is not None and b is not None and c is not None:
-      return a + b + c
-    elif a is not None and b is not None:
-      return a + b
-    elif a is not None:
-      return a
-    else:
-      return 0
-    
-obj = TestClass()
-# print(obj.sum())
-# print(obj.sum(1))
-# print(obj.sum(1, 2))
-# print(obj.sum(1, 2, 3))
-
-'''Polymorphism is when you can use the same call to do multiple things,
- ie + that can add and concatenate. method overriding does this'''
-
-#method overloading- using the same method to do different things
 '''
-class TestClass:
-  def sum(self, a, b, c):
-    return a + b + c
-  
-  def sum(self, a, b):
-    return a + b
-  
-obj = TestClass()
-print(obj.sum(1, 2, 3))
-#returns an error message because python uses the last declared method
+there will be a final project idea and final project design due later this month
+start thinking about what you want for your final project
+we will be using a user interface with our projects
 '''
-class TestClass:
-  def sum(self, a, b, c=0):
-    return a + b + c
 
-obj = TestClass()
-# print(obj.sum(1,2)),
-# print(obj.sum(1, 2, 3))
-#works because c is optional
-#if I put c as None the first one throws an error but the second doesn't 
+#Importing Modules and Importing Functions - should be done
+#Advanced- getting stuff from a different file and putting it into classes
 
-'''overloading- this case uses an if else block to decide which thing to do 
-from the same method.'''
-#teacher example:
-class TestClass:
-  def sum(self, a = None, b = None, c = None):
-    if a is not None and b is not None and c is not None:
-      return a + b + c
-    elif a is not None and b is not None:
-      return a + b
-    elif a is not None:
-      return a
-    else:
-      return 0
+from csv import reader 
+# from app import App 
+
+class App:
+    def __init__(self, name, description, category):
+        self.name = name
+        self.description = description
+        self.category = category
+
+    def display(self):
+        return self.name
     
-obj = TestClass()
-print(obj.sum())
-print(obj.sum(1))
-print(obj.sum(1, 2))
-print(obj.sum(1, 2, 3))
-
-#operator overloading
-
-#duck typing 
-class Baseball:
-  def __init__(self, power):
-    self._power = power
-
-  def hit(self):
-    if self._power >= 10:
-      return "Home Run"
-    else:
-      return "weak"
+    def __repr__(self):
+        return f"{self.name} is a {self.category} app."
+    #overriding the dender method to represent oneself
+    #this will now print this instead of the location when an instance is called
     
+    def __str__(self):
+        return f"{self.name} is used to {self.description}"
+    #will only work for one object, doesn't work in a list
+    #is always called over __repr__
 
-class Song:
-  def __init__(self, title, author):
-    self._title = title
-    self._author = author
+apps = []
+'''
+with open('apps.csv') as csv_file:
+    csv_reader = reader(csv_file, delimiter=',')
+    next(csv_reader)
+    for name, description, category in csv_reader:
+        apps.append(App(name, description, category))
+'''
+'''
+# print(apps) 
+my_obj = App("Pinterest", "scroll cute pics", "social media")
+print(repr(my_obj)) 
+print(str(my_obj))
+print(my_obj)
 
-  def hit(self):
-    if self._author == "Fall Out Boy":
-      return "YEAHHHHHHHH"
-    elif self._title == "Paradise":
-      return "Yeahhhhhh!"
-    else:
-      return "nahhhh"
-    
-def print_hit(obj):
-  try:
-    print(obj.hit())
-  except AttributeError as e:
-    print(e) 
+# Class composition 
+class Car:
+    def __init__(self, color, engine):
+        self.color = color
+        self.engine = engine
 
-#crashing your code is the highest severity of bug that there is
-#it's better to print an error message than to crash the system
+    def describe(self):
+        print(f'{self.color} car')
+class Engine:
+    def __init__(self, horsepower):
+        self.horsepower = horsepower
 
-#possible becuase both baseball and song are objects
+    def revv(self):
+        print("vroom vroom")
 
-my_player = Baseball(12)
-my_song = Song("Paradise", "Rude A")
+my_engine = Engine(450)
+my_car = Car("black", my_engine)
+my_car.describe()
+my_car.engine.revv()
 
-print_hit(my_player)
-print_hit(my_song)
+'''
+class Candy:
+  def __init__(self, name, weight, price_per_pound):
+    self.name = name
+    self.weight = weight
+    self.price_per_pound = price_per_pound
 
+class Cookie:
+  def __init__(self, name, quantity, price_per_pound):
+    self.name = name
+    self.quantity = quantity
+    self.price_per_pound = price_per_pound
+
+class IceCream:
+  def __init__(self, name, scoop_count, price_per_scoop):
+    self.name = name 
+    self.scoop_count = scoop_count
+    self.price_per_scoop = price_per_scoop
+
+class Sundae(IceCream):
+  def __init__(self, name, scoop_count, price_per_scoop, topping_name, topping_price):
+    super().__init__(name, scoop_count, price_per_scoop)
+    self.topping_name = topping_name
+    self.topping_price = topping_price 
+
+my_des = Sundae("bleh", 5, 5, 5, 5)
