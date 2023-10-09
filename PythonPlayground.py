@@ -7,8 +7,8 @@ we will be using a user interface with our projects
 #Importing Modules and Importing Functions - should be done
 #Advanced- getting stuff from a different file and putting it into classes
 
-from csv import reader 
-# from app import App 
+import csv
+from module import apps.csv as csv_file
 
 class App:
     def __init__(self, name, description, category):
@@ -30,19 +30,20 @@ class App:
     #is always called over __repr__
 
 apps = []
-'''
-with open('apps.csv') as csv_file:
-    csv_reader = reader(csv_file, delimiter=',')
-    next(csv_reader)
-    for name, description, category in csv_reader:
-        apps.append(App(name, description, category))
-'''
-'''
+
+with open("apps.csv") as csv_file:
+    csv_reader = csv.reader("apps.csv", delimiter=',')
+    print(csv_reader)
+    for name in csv_reader:
+       print(name)
+        # apps.append(App(name, description, category))
+
+
 # print(apps) 
-my_obj = App("Pinterest", "scroll cute pics", "social media")
-print(repr(my_obj)) 
-print(str(my_obj))
-print(my_obj)
+# my_obj = App("Pinterest", "scroll cute pics", "social media")
+# print(repr(my_obj)) 
+# print(str(my_obj))
+# print(my_obj)
 
 # Class composition 
 class Car:
@@ -64,7 +65,7 @@ my_car = Car("black", my_engine)
 my_car.describe()
 my_car.engine.revv()
 
-'''
+
 class Candy:
   def __init__(self, name, weight, price_per_pound):
     self.name = name
