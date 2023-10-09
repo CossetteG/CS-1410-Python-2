@@ -625,3 +625,77 @@ class Calculator:
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
+------------------
+
+def greet(name: str) -> str:
+    return "Hello, " + name
+
+print(greet("Rose"))
+
+print(greet(26))
+
+help(str)
+
+'''
+class str(object)
+ |  str(object='') -> str
+ |  str(bytes_or_buffer[, encoding[, errors]]) -> str
+ |
+ |  Create a new string object from the given object. If encoding or
+ |  errors is specified, then the object must expose a data buffer
+ |  that will be decoded using the given encoding and error handler.
+ |  Otherwise, returns the result of object.__str__() (if defined)
+ |  or repr(object).
+'''
+
+# This file is the class definition
+
+from typing import List, Tuple, Dict, Any, Union, Optional
+
+age: int = 30
+
+def greet(name: str) -> str:
+    return "Hello, " + name
+
+greet("Rose")
+
+def find_user(user_id: int) -> Optional[str]:
+  pass
+    # Implementation here
+    # Return a username or None if not found
+
+
+def process_data(data: List[int]) -> Tuple[str, Dict[str, int]]:
+  pass
+    # Implementation here
+
+class User:
+  pass
+    # Class implementation
+
+def get_users() -> List[User]:
+  pass
+    # Implementation here
+
+from typing import Callable
+
+def apply(func: Callable[[int, int], int], x: int, y: int) -> int:
+    return func(x, y)
+
+from typing import List
+
+UserList = List[str]
+
+def get_usernames() -> UserList:
+    # Implementation here
+
+from typing import NewType
+
+UserId = NewType("UserId", int)
+
+def get_user(user_id: UserId) -> str:
+    # Implementation here
+
+#pip install mypy
+#mypy your_script.py
