@@ -1,51 +1,146 @@
 """
 Dessert Shop!!
+:( you never let me have any fun
 """
+#module
+class DessertItem:
+  def __init__(self, name: str):
+    self.name = name
 
-class Coffee:
-    dish = "mug"
-    price = 3.00
+class Candy(DessertItem):
+  def __init__(self, name:str, weight: float, price_per_pound: float):
+    super().__init__(name)
+    self.weight = weight
+    self.price_per_pound = price_per_pound
 
-    _sizes = [12, 16, 24, 32]
-    _bases = ["pour over", "esspresso", "chai"]
-    _syrups = ["pumpkin", "caramel", "toffee", "raspberry", "vanilla"]
-    _milks = ["Whole", "2%", "Almond", "Oat"]
+class Cookie(DessertItem):
+  def __init__(self, name:str, quantity:int, price_per_dozen:float):
+    super().__init__(name)
+    self.quantity = quantity
+    self.price_per_pound = price_per_dozen
 
-    def __init__(self, size, temp, base, syrup=None, milk=None, whipped_cream=False):
-        self._size = size
-        self._temp = temp
-        self._base = base
-        self._syrup = syrup
-        self._milk = milk
-        self._whipped_cream = whipped_cream
+class IceCream(DessertItem):
+  def __init__(self, name:str, scoop_count:int, price_per_scoop:float):
+    super().__init__(name)
+    self.scoop_count = scoop_count
+    self.price_per_scoop = price_per_scoop
+
+class Sundae(IceCream):
+  def __init__(self, name:str, scoop_count:int, price_per_scoop:float, topping_name:str, topping_price:float):
+    super().__init__(name, scoop_count, price_per_scoop)
+    self.topping_name = topping_name
+    self.topping_price = topping_price 
+
+my_des = Sundae("bleh", 5, 5, 5, 5)
+
+#testing
+import unittest
+#from dessert import DessertItem, Cookie, Candy, IceCream, Sundae
+
+class DessertItemTest(unittest.TestCase):
+  def setup(self):
+    self.my_dessert = DessertItem("dessert")
+    self.my_dessert2 = DessertItem("")
+
+    self.my_cookie = Cookie("cookie", 2, 3.00)
+    self.my_cookie2 = Cookie("", 2, 3.00)
+    self.my_cookie3 = Cookie("cookie", 0, 0.00)
+    self.my_cookie4 = Cookie("", 0, 0.00)
+
+    self.my_candy = Candy("candy", 3.00, 3.00)
+    self.my_candy2 = Candy("", 3.00, 3.00)
+    self.my_candy3 = Candy("candy", 0.00, 0.00)
+    self.my_candy4 = Candy("", 0.00, 0.00)
+
+    self.my_icecream = IceCream("icecream", 2, 3.00)
+    self.my_icecream2 = IceCream("", 2, 3.00)
+    self.my_icecream3 = IceCream("icecream", 0, 0.00)
+    self.my_icecream4 = IceCream("", 0, 0.00)
+
+    self.my_sundae = Sundae("sundae", 2, 3.00, "topping", 3.00)
+    self.my_sundae2 = Sundae("", 2, 3.00, "", 3.00)
+    self.my_sundae3 = Sundae("sundae", 0, 0.00, "topping", 0.00)
+    self.my_sundae4 = Sundae("", 0, 0.00, "", 0.00)
 
 
-class Bread:
-    dish = "large plate"
-    price = 4.00
+  def verify_lineage(self, des_obj, coo_obj, can_obj, ice_obj, sun_obj):
+    assert issubclass(coo_obj, des_obj)
+    assert issubclass(can_obj, des_obj)
+    assert issubclass(ice_obj, des_obj)
+    assert issubclass(sun_obj, ice_obj)
 
-    _bread_types = ["zucchini", "pumpkin", "banana", "sour dough", "wheat", "white"]
+  def dessertinit(self, obj1, obj2):
+    assert obj1.name == "dessert" and type(obj1.name) == str
+    assert obj2.name == ""
 
-    def __init__(self, bread_type):
-        self._bread_type = bread_type
+  def cookieinit(self, obj1, obj2, obj3, obj4):
+    assert obj1.name == "cookie"
+    assert obj2.name == ""
+    assert obj3.name == "cookie"
+    assert obj4.name == ""
 
-class Toast(Bread):
-    price = 4.50
-    _toppings = ["butter", "brown sugar butter", "avocado", "cream cheese", "jam"]
+    assert obj1.quantity == 2 and type(obj1.quantity) == str
+    assert obj2.quantity == 2
+    assert obj3.quantity == 0
+    assert obj4.quantity == 0 
 
-    def __init__(self, bread_type, topping):
-        super().__init__(bread_type)
-        self._topping = topping
+    assert obj1.price_per_pound == 3.00 and type(obj1.quantity) == float
+    assert obj2.quantity == 2
+    assert obj3.quantity == 0
+    assert obj4.quantity == 0 
 
-class Cookie:
-    dish = "small plate"
-    price = 2.50 
+  def candyinit(self, obj1, obj2, obj3, obj4):
+    assert obj1.name == "cookie"
+    assert obj2.name == ""
+    assert obj3.name == "cookie"
+    assert obj4.name == ""
 
-    _types = ["snickerdoodle", "chocolate chip", "sugar", "seasonal"]
+    assert obj1.quantity == 2 and type(obj1.quantity) == str
+    assert obj2.quantity == 2
+    assert obj3.quantity == 0
+    assert obj4.quantity == 0 
 
-    def __init__(self, type):
-       self._type = type 
+    assert obj1.price_per_pound == 3.00 and type(obj1.quantity) == float
+    assert obj2.quantity == 2
+    assert obj3.quantity == 0
+    assert obj4.quantity == 0
 
-class Order:
-    _total_price = 0.00
-    _total_dishes = 0
+  def icecreaminit(self, obj1, obj2, obj3, obj4):
+    assert obj1.name == "cookie"
+    assert obj2.name == ""
+    assert obj3.name == "cookie"
+    assert obj4.name == ""
+
+    assert obj1.quantity == 2 and type(obj1.quantity) == str
+    assert obj2.quantity == 2
+    assert obj3.quantity == 0
+    assert obj4.quantity == 0 
+
+    assert obj1.price_per_pound == 3.00 and type(obj1.quantity) == float
+    assert obj2.quantity == 2
+    assert obj3.quantity == 0
+    assert obj4.quantity == 0 
+
+  def sundaeinit(self, obj1, obj2, obj3, obj4):
+    assert obj1.name == "cookie"
+    assert obj2.name == ""
+    assert obj3.name == "cookie"
+    assert obj4.name == ""
+
+    assert obj1.quantity == 2 and type(obj1.quantity) == str
+    assert obj2.quantity == 2
+    assert obj3.quantity == 0
+    assert obj4.quantity == 0 
+
+    assert obj1.price_per_pound == 3.00 and type(obj1.quantity) == float
+    assert obj2.quantity == 2
+    assert obj3.quantity == 0
+    assert obj4.quantity == 0 
+  
+#gotta finish
+if __name__ == "__main__":
+  mytest = DessertItemTest()
+  mytest.setup()
+  mytest.verify_lineage(DessertItem, Cookie, Candy, IceCream, Sundae)
+  
+  print("yes")
