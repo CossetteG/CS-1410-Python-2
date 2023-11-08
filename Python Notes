@@ -902,3 +902,69 @@ for i in range(1, 101):
     print(sum) 
 
 
+Sorting Objects 
+
+class Student:
+    def __init__(self, name, age):
+        self.name = name 
+        self.age = age 
+
+    def __str__(self):
+        pass
+
+    def __gt__(self, other):
+        return self.age > other.age 
+
+def get_age(student):
+    return student.age 
+
+mike = Student("Mike", 18)
+jp = Student("JP", 50)
+
+students = [mike, jp, Student("Alice", 25)]
+
+sorted_students = sorted(students, key=get_age)
+sorted_studentss = sorted(students, key=lambda student: student.age)
+sorted_studentss = sorted(students, key=lambda student: (student.age, student.name))
+
+for student in sorted_students:
+    print(student) 
+
+The C3 Linearization Algorithm 
+bottom to top left to right 
+
+override is for inherited class
+    override uses the first on it finds bottom to top left to right
+overload is for same class 
+    overload uses the last one in the indented block 
+
+
+class Vector:
+    def __init__(self, x, y)
+        self.x = x
+        self.y = y 
+    
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y, other.y) 
+
+    def __mul__(self, scaler):
+        if type(scaler) == Vector:
+            return Vector(self.x * scaler.x, self.y * scaler.y)
+        else:
+            return Vector(self.x * scaler.x, self.y * scaler.y)
+
+
+
+    def __str__(self):
+        return f"< {self.x}, {self.y} >"
+    
+v1 = Vector(1,2)
+v2 = Vector(3,4)
+
+
+__lt__ 
+__eq__ 
+__gt__ 
+__ge__ 
+__neq__
+__le__
