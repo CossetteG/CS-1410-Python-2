@@ -980,3 +980,19 @@ def hhelper(self):
     return onelist, twolist 
 
 #prints a list of a tuple with 2 lists 
+
+
+from typing import Protocol, runtime_checkable
+
+@runtime_checkable
+class Foo(Protocol):
+    x: int
+
+class Bar(object):
+    def __init__(self, x):
+        self.x = x
+
+assert isinstance(Bar(10), Foo)
+assert not isinstance(Bar(10.), Foo)  # This fails, which I didn't expect
+
+
