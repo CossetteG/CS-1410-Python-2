@@ -1148,3 +1148,85 @@ for _ in range(1000):
     num = next(random_gen)
     print(f"{num} is prime? {is_prime(num)}")
 
+-----------------------
+Database: SQLAlchemy 
+sql: Select Query Language 
+select..from..where 
+
+pip install sqlalchemy 
+
+from sqlalchemy import Column, Integer, String 
+from sqlalchemy.orm import declarative_base 
+#from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine 
+from sqlalchemy.orm import sessionmaker 
+
+Base = declarative_base()
+
+class User(Base):
+    __tablename__="users"
+
+    id = Column(Integers, primary_key=True)
+        #primary_key must be unique 
+    name = Column(String)
+    age = Column(Integer)
+    email = Column(String)
+    #components are columns, instances are rows 
+
+engine= create_engine('sqlite:///example.db')
+#if not in a server/url, it will be saved to the local computer 
+
+Base.metadata.create_all(engine) 
+
+Session = sessionmaker(bind=engine) 
+session = Session()
+
+#CRUD- Create, Read, Use, Delete 
+
+new_user1 = User(name='June', age=10, email='saasdfasdf@asdf.mom')
+
+session.add(new_user1)
+
+session.commit()
+session.close()
+----------
+session = Session()
+users = session.query(User).all()
+for user in users:
+    print(user.id, user.name, user.age, user.email)
+
+older_users = session.query(User).filter(User.age>25).all()
+
+
+you cant read database files directly but you can downloand a database browser to get stuff from it 
+
+import time
+
+def trytoprint():
+    print("hellooooo")
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{func.__name__} took {end_time - start_time:.5f} seconds to execute.")
+        return result
+
+    return wrapper
+
+
+@timing_decorator
+def slow_function():
+    time.sleep(2)
+    print("done") 
+    
+
+
+
+
+
+
+
+
+
