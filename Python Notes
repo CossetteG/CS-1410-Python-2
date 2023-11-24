@@ -1222,8 +1222,222 @@ def slow_function():
     print("done") 
     
 
+Method Resolution Order 
+
+class A:
+    pass
+
+class B(A):
+    pass
+
+class C(A):
+    pass
+
+class D(B, C):
+    pass
+The MRO for class D is calculated as follows:
+MRO(D) = D + Merge(MRO(B), MRO©, BC)
+MRO(B) = B + Merge(MRO(A), A)
+MRO© = C + Merge(MRO(A), A)
+
+Operator Overloading
+
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        return Vector(self.x - other.x, self.y - other.y)
+
+Magic Method List 
+
+Initialization and Construction
+__new__: To get called in an object’s instantiation.
+__init__: To get called by the __new__ method.
+__del__: It is the destructor.
+
+Numeric magic methods
+__trunc__(self): Implements behavior for math.trunc()
+__ceil__(self): Implements behavior for math.ceil()
+__floor__(self): Implements behavior for math.floor()
+__round__(self,n): Implements behavior for the built-in round()
+__invert__(self): Implements behavior for inversion using the ~ operator.
+__abs__(self): Implements behavior for the built-in abs()
+__neg__(self): Implements behavior for negation
+__pos__(self): Implements behavior for unary positive 
+
+Arithmetic operators
+__add__(self, other): Implements behavior for math.trunc()
+__sub__(self, other): Implements behavior for math.ceil()
+__mul__(self, other): Implements behavior for math.floor()
+__floordiv__(self, other): Implements behavior for the built-in round()
+__div__(self, other): Implements behavior for inversion using the ~ operator.
+__truediv__(self, other): Implements behavior for the built-in abs()
+__mod__(self, other): Implements behavior for negation
+__divmod__(self, other): Implements behavior for unary positive 
+__pow__: Implements behavior for exponents using the ** operator.
+__lshift__(self, other): Implements left bitwise shift using the << operator.
+__rshift__(self, other): Implements right bitwise shift using the >> operator.
+__and__(self, other): Implements bitwise and using the & operator.
+__or__(self, other): Implements bitwise or using the | operator.
+__xor__(self, other): Implements bitwise xor using the ^ operator.
+
+String Magic Methods
+__str__(self): Defines behavior for when str() is called on an instance of your class.
+__repr__(self): To get called by built-int repr() method to return a machine readable representation of a type.
+__unicode__(self): This method to return an unicode string of a type.
+__format__(self, formatstr): return a new style of string.
+__hash__(self): It has to return an integer, and its result is used for quick key comparison in dictionaries.
+__nonzero__(self): Defines behavior for when bool() is called on an instance of your class. 
+__dir__(self): This method to return a list of attributes of a class.
+__sizeof__(self): It return the size of the object.
+
+Comparison magic methods
+__eq__(self, other): Defines behavior for the equality operator, ==.
+__ne__(self, other): Defines behavior for the inequality operator, !=.
+__lt__(self, other): Defines behavior for the less-than operator, <.
+__gt__(self, other): Defines behavior for the greater-than operator, >.
+__le__(self, other): Defines behavior for the less-than-or-equal-to operator, <=.
+__ge__(self, other): Defines behavior for the greater-than-or-equal-to operator, >=.
+
+Attribute Descriptors 
+class MinValue:
+    def __init__(self, minimum):
+        self.minimum = minimum
+        
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.name]
+        
+    def __set__(self, instance, value):
+        if value < self.minimum:
+            raise ValueError("Value is too small")
+        instance.__dict__[self.name] = value
+        
+    def __set_name__(self, owner, name):
+        self.name = name
+
+class MyClass:
+    x = MinValue(0)
 
 
+Map Filter Reduce
+
+map(function, iterable)
+Example:
+def square(x):
+    return x * x
+
+numbers = [1, 2, 3, 4, 5]
+squares = list(map(square, numbers))
+print(squares)
+# Output: [1, 4, 9, 16, 25] 
+
+filter(function, iterable)
+Example:
+def is_even(x):
+    return x % 2 == 0
+
+numbers = [1, 2, 3, 4, 5]
+even_numbers = list(filter(is_even, numbers))
+print(even_numbers)
+# Output: [2, 4]
+
+functools.reduce(function, iterable[, initializer])
+Example:
+import functools
+
+def add(x, y):
+    return x + y
+
+numbers = [1, 2, 3, 4, 5]
+sum_of_numbers = functools.reduce(add, numbers)
+print(sum_of_numbers)
+# Output: 15 
+
+Manually compare objects:
+
+class MyClass:
+    def __init__(self, attr1, attr2):
+        self.attr1 = attr1
+        self.attr2 = attr2
+
+def compare_objects(obj1, obj2):
+    if not isinstance(obj1, MyClass) or not isinstance(obj2, MyClass):
+        return False
+
+    return obj1.attr1 == obj2.attr1 and obj1.attr2 == obj2.attr2
+
+# Create objects
+obj1 = MyClass(1, 'A')
+obj2 = MyClass(1, 'A')
+obj3 = MyClass(2, 'B')
+
+# Compare objects
+print(compare_objects(obj1, obj2))  # Output: True
+print(compare_objects(obj1, obj3))  # Output: False
+
+euclidian distance
+measures the distance between the endpoints of 2 3D vectors, 
+influenced by the length of the vectors 
+
+distance = sqrt(sum((a_i - b_i)^2 for i in range(len(a))))
+Example:
+import math
+
+def euclidean_distance(a, b):
+    return math.sqrt(sum((a_i - b_i)**2 for a_i, b_i in zip(a, b)))
+
+vector_a = [1, 2, 3]
+vector_b = [4, 5, 6]
+distance = euclidean_distance(vector_a, vector_b)
+print(distance)
+# Output: 5.196152422706632 
+
+Cosine similarity 
+measures the difference in angle between 2 3D Vectors
+length doesn't play a factor
+on a scale from -1 to 1 
+
+similarity = dot(a, b) / (norm(a) * norm(b))
+Example:
+import numpy as np
+
+def cosine_similarity(a, b):
+    dot_product = np.dot(a, b)
+    norm_a = np.linalg.norm(a)
+    norm_b = np.linalg.norm(b)
+    return dot_product / (norm_a * norm_b)
+
+vector_a = [1, 2, 3]
+vector_b = [4, 5, 6]
+similarity = cosine_similarity(vector_a, vector_b)
+print(similarity)
+# Output: 0.9746318461970762 
+
+jaccard similarity 
+measures the similarity of two sets
+on a scale from 0 to 1 
+
+intersection / union 
+similarity = |A ∩ B| / |A ∪ B|
+
+Example:
+def jaccard_similarity(a, b):
+    set_a = set(a)
+    set_b = set(b)
+    intersection = set_a.intersection(set_b)
+    union = set_a.union(set_b)
+    return len(intersection) / len(union)
+
+list_a = [1, 2, 3, 4, 5]
+list_b = [4, 5, 6, 7, 8]
+similarity = jaccard_similarity(list_a, list_b)
+print(similarity)
+# Output: 0.2857142857142857
 
 
 
