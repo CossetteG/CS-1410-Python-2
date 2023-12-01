@@ -1439,8 +1439,150 @@ similarity = jaccard_similarity(list_a, list_b)
 print(similarity)
 # Output: 0.2857142857142857
 
+-------------------------
+DATABASES
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+Base = declarative_base()
+
+class User(Base):
+  __tablename__ = 'users'
+
+  id = Column(Integer, primary_key = True)
+  name = Column(String)
+  age = Column(Integer)
+  email = Column(String)
+
+engine = create_engine('sqlite:///example.db')
+Base.metadata.create_all(engine)
+
+# CREATING (adding)
+#session factory
+Session = sessionmaker(bind=engine) 
+#new session
+session = Session()
+#user object 
+new_user = User(name='John Doe', age=20, email='s;oaifn;oeisdcn voicesgfhdcksh')
+#add user to session
+session.add(new_user)
+# commit
+session.commit()
+#Close the session 
+session.close()
+
+# QUERY
+# Create a new session
+session = Session()
+# Query all users from the database
+users = session.query(User).all()
+
+# Print the users
+for user in users:
+    print(user.id, user.name, user.age, user.email)
+# Filter users by age
+older_users = session.query(User).filter(User.age > 25).all()
+# Print the older users
+for user in older_users:
+    print(user.id, user.name, user.age, user.email)
+# Close the session
+session.close()
+
+# UPDATE
+# Create a new session
+session = Session()
+# Query a specific user
+user = session.query(User).filter(User.id == 1).first()
+# Update the user's email
+user.email = 'updated.email@example.com'
+# Commit the changes
+session.commit()
+# Close the session
+session.close()
+
+# DELETE 
+# Create a new session
+session = Session()
+# Query a specific user
+user = session.query(User).filter(User.id == 1).first()
+# Delete the user
+session.delete(user)
+# Commit the changes
+session.commit()
+# Close the session
+session.close()
+
+engine.dispose()
+-----------------------
+
+python GUI with Kivy 
+change the environment variable
+
+pip install kivy 
+
+from kivy.app import App 
+from kivy.ui.label import Label
+from kivy.lang import Builder
+
+class HelloWorldApp(App):
+    def build(self):
+        # return Label(text='Hello, World')
+        return Builder.load_file('main.kv')
+
+# main.kv
+BoxLayout:
+    orientation: 'vertical'
+
+    Label:
+        text: 'Enter your name:'
+
+    TextInput:
+        id: user_input
+        multiline: False
+
+    Button:
+        text: 'Greet'
+        on_press: output_label.text = 'Hello, ' + user_input.text
+
+    Label:
+        id: output_label
+        text: 'Welcome!'
 
 
+if __name__ == "__main__":
+    HelloWorldApp().run()
+    # print("done")
+
+'''
+kv Widgets:
+Labels: show text 
+Button: on_press do something
+TextInput: hint_text, multiline: False 
+Box Layout: orientation 
+    CheckBox: id:dheck_box, active: True
+Slider:
+    min: max: value: 
+Switch
+ProgressBar
+Image
+    source: "path"
+    allow_stretch
+    keep_ratio
+GridLayout
+FloatLayout 
+ScreenManager 
+
+class Customer:
+    def __init__(self, name):
+        self.customer_name = name
+        self.order_history = []
+
+    def add2history(self, order):
+        self.order_history.append(order)
+
+'''
 
 
 
